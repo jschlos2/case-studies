@@ -85,6 +85,19 @@ figcaption b{color:var(--soft);font-weight:700}
 .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
 @media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
 
+
+/* at a glance */
+.glance{background:var(--panel)}
+.decisions{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:960px){.decisions{grid-template-columns:1fr}}
+.decisions li{display:grid;grid-template-rows:auto auto 1fr auto auto;gap:12px;padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--navy);min-width:0}
+.decisions .dnum{font:700 13px/1 var(--f-form);color:var(--gold);letter-spacing:.08em}
+.decisions h3{margin:0;font-size:28px;line-height:1}
+.dwhat{font-size:15.5px;color:var(--soft)}
+.dresult{font-size:15.5px;color:var(--ink);padding-top:12px;border-top:1px solid var(--line)}
+.dresult b{display:block;font:700 11px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.dlink{font-weight:600;font-size:14.5px;justify-self:start}
+
 /* question */
 .question{font:400 clamp(30px,3.6vw,44px)/1.08 var(--f-display);color:var(--ink);max-width:24ch;padding-left:22px;border-left:3px solid var(--green);margin:0 0 36px;text-wrap:balance}
 
@@ -242,7 +255,7 @@ footer a{color:var(--soft);text-decoration:none;font-weight:600}
 <header class="top"><div class="wrap">
   <a class="name" href="#overview">JENNIFER ROBERTSON</a>
   <nav class="toc" aria-label="Case study sections">
-    <a href="#overview">Overview</a><a href="#world">World</a><a href="#characters">Characters</a><a href="#loop">Loop</a><a href="#planning">Planning</a><a href="#cases">Cases</a><a href="#testing">Testing</a><a href="#evidence">Evidence</a><a href="#lessons">Lessons</a>
+    <a href="#overview">Overview</a><a href="#glance">At a glance</a><a href="#world">World</a><a href="#characters">Characters</a><a href="#loop">Loop</a><a href="#planning">Planning</a><a href="#cases">Cases</a><a href="#testing">Accessibility</a><a href="#evidence">Evidence</a><a href="#lessons">Lessons</a>
   </nav>
 </div></header>
 
@@ -262,6 +275,36 @@ footer a{color:var(--soft);text-decoration:none;font-weight:600}
     <div><dt>Status</dt><dd>Six-case MVP on hosted staging. Production stays on the earlier three-case build.</dd></div>
   </dl>
   <figure class="hero-art"><img src="a/cover.webp" width="1500" height="1000" alt="Unlikely Mail cover: the Clerk's and Archivist's desks shown as two tilted cards, the prairie dog and grouse characters at either edge, four commemorative stamps with a Form 7½ postmark, and the line The mail must go through."><figcaption><b>Handshake cover.</b> Built from real workstation captures, the approved character renders and four of the game's twelve stamp designs.</figcaption></figure>
+</div></section>
+
+<section class="band glance" id="glance"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">At a glance</p>
+    <h2>Three decisions that shaped the game.</h2>
+  </div>
+  <ol class="decisions">
+    <li>
+      <span class="dnum">01</span>
+      <h3>Split the knowledge so both players are needed</h3>
+      <p class="dwhat">The Clerk sees the letter and stamps. The Archivist sees the directory, routing rules and shift postage. Neither screen holds the answer, so every delivery takes a conversation.</p>
+      <p class="dresult"><b>Result</b> A full recorded two-player shift on staging: 3 of 3 letters delivered, 0 mistakes, both roles doing real work.</p>
+      <a class="dlink" href="#loop">See the interaction model</a>
+    </li>
+    <li>
+      <span class="dnum">02</span>
+      <h3>Give the pair a shared resource to plan around</h3>
+      <p class="dwhat">Five shared 10¢ stamps for postage that costs more, plus one optional adjustment the Archivist can research. Six authored cases rotate through three shift templates.</p>
+      <p class="dresult"><b>Result</b> 18 supported shift orders, with all 36 valid stamp plans checked for solvability on PostgreSQL.</p>
+      <a class="dlink" href="#planning">See the cooperative mechanics</a>
+    </li>
+    <li class="d-a11y">
+      <span class="dnum">03</span>
+      <h3>Let accessibility testing reshape the interface</h3>
+      <p class="dwhat">I replaced overhead camera views with a fixed eye-level view, and fixed what testing found: lost keyboard focus, a Send button that ignored clicks during sync, small targets and mobile overlap.</p>
+      <p class="dresult"><b>Result</b> Focus now lands on the result after 8 key actions, key controls are at least 44 px, Escape closes menus, and both roles fit at 390 and 360 px wide (emulated, not yet on a physical phone).</p>
+      <a class="dlink" href="#testing">See the accessibility fixes</a>
+    </li>
+  </ol>
 </div></section>
 
 <section class="band" id="question"><div class="wrap cols">
